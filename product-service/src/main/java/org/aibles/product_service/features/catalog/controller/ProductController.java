@@ -1,5 +1,6 @@
 package org.aibles.product_service.features.catalog.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.product_service.features.catalog.controller.constant.ResponseConstant;
@@ -27,7 +28,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BaseResponse<ProductResponse> createProduct ( @RequestBody ProductRequest productRequest )
+    public BaseResponse<ProductResponse> createProduct (@Valid @RequestBody ProductRequest productRequest )
              {
         log.info("Tạo sản phẩm: {}", productRequest);
         ProductEntity productEntity = ProductConverter.toEntity(productRequest);

@@ -3,6 +3,7 @@ package org.aibles.product_service.features.catalog.service.impl;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.product_service.features.catalog.entity.ProductEntity;
+import org.aibles.product_service.features.catalog.exception.ProductAlreadyExistsException;
 import org.aibles.product_service.features.catalog.repository.ProductRepository;
 import org.aibles.product_service.features.catalog.service.ProductService;
 import org.springframework.data.domain.Page;
@@ -24,8 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
         if (productRepository.existsByName(productEntity.getName())) {
             log.error("Product already exists");
-            throw new RuntimeException();
-//            ProductAlreadyExistsException("Product with name already exists", productEntity.getName());
+            throw new ProductAlreadyExistsException(productEntity.getName());
         }
         productRepository.save(productEntity);
         log.info("Product created successfully with id: {}", productEntity.getId());

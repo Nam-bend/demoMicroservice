@@ -15,7 +15,10 @@ spring:
     show-sql: true
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
-
+  messages:
+    basename: i18n/error_messages
+    encoding: UTF-8
+    cache-duration: 3600
 
 eureka:
   instance:
@@ -25,3 +28,4 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
